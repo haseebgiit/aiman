@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy New Year Wishes</title>
+  <style>
+    body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to bottom, #000428, #004e92);
+  color: white;
+  overflow: hidden;
+}
+
+
+.title {
+  text-align: center;
+  font-size: 3rem;
+  margin: 20px 0;
+  animation: fadeIn 2s ease-in-out;
+  text-shadow: 0px 0px 15px #ff6f61;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+.card-slider {
+  position: relative;
+  width: 320px;
+  height: 450px;
+  overflow: hidden;
+  perspective: 1500px;
+}
+
+.card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /* background: linear-gradient(135deg, #ff6f61, #ff9966); */
+  background-image: url(bg.jpg);
+  background-size: cover;
+  color: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  font-size: 1.8rem;
+  opacity: 0;
+  transform: rotateY(90deg);
+  transition: all 0.8s ease-in-out;
+}
+
+.card.active {
+  opacity: 1;
+  transform: rotateY(0deg);
+}
+
+.card.prev {
+  opacity: 0.5;
+  transform: rotateY(-90deg);
+}
+
+.card h2 {
+  margin: 0 0 10px;
+  text-shadow: 0 0 10px #ffffff;
+  font-size: 1.4rem;
+}
+
+.card p {
+  text-align: center;
+padding: 10px;
+}
+
+.fireworks {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: url('https://i.imgur.com/6WUgVQO.gif') no-repeat center center;
+  background-size: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  body {
+    background: url('bg.jpg');
+    background-size: contain;
+  }
+}
+  </style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">Happy New Year 2025 🎉</h1>
+    <div class="card-slider">
+      <div class="card" id="card1">
+        <h2>1</h2>
+        <h2>Aiman</h2>
+        <p>Mari Piyari Bahn</p>
+      </div>
+      <div class="card" id="card2">
+        <h2>2</h2>
+        <h2>Aiman</h2>
+        <p>Whatever you lost last year, may this year bring even better rewards.</p>
+      </div>
+      <div class="card" id="card3">
+        <h2>3</h2>
+        <h2>Aiman</h2>
+        <p>The dreams you once had, may they come true this year.</p>
+      </div>
+      <div class="card" id="card4">
+        <h2>4</h2>
+        <h2>Aiman</h2>
+        <p>May every day of this New Year be filled with smiles for you.</p>
+      </div>
+      <div class="card" id="card5">
+        <h2>5</h2>
+        <h2>Aiman</h2>
+        <p>May you achieve everything you desire, and life always supports you.</p>
+      </div>
+      <div class="card" id="card6">
+        <h2>6</h2>
+        <h2>Aiman</h2>
+        <p>May the blessings you have now become your true source of happiness.</p>
+      </div>
+      <div class="card" id="card7">
+        <h2>7</h2>
+        <h2>Aiman</h2>
+        <p>If your father were alive, he would be so proud of you and pray for your success.</p>
+      </div>
+    </div>
+    <div class="fireworks" id="fireworks"></div>
+    <h1 class="title" style="font-size: 16px;">By Haseeb.giit</h1>
+  </div>
+  <script src="script.js"></script>
+  <script>
+    const cards = document.querySelectorAll('.card');
+const fireworks = document.getElementById('fireworks');
+let currentCard = 0;
+
+function showNextCard() {
+  // Remove active and prev classes from all cards
+  cards.forEach((card, index) => {
+    card.classList.remove('active', 'prev');
+    if (index === currentCard) {
+      card.classList.add('prev');
+    }
+  });
+
+  // Move to the next card
+  currentCard = (currentCard + 1) % cards.length;
+  cards[currentCard].classList.add('active');
+
+  // Trigger fireworks effect
+  triggerFireworks();
+}
+
+function triggerFireworks() {
+  fireworks.style.opacity = 1;
+  setTimeout(() => {
+    fireworks.style.opacity = 0;
+  }, 500);
+}
+
+// Initialize the first card
+cards[currentCard].classList.add('active');
+
+// Swipe card every 3 seconds
+setInterval(showNextCard, 3000);
+
+  </script>
+</body>
+</html>
